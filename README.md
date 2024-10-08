@@ -137,6 +137,9 @@ Copy code
 python manage.py runserver
 The server will be running at http://127.0.0.1:8000/.
 
+### ALLOWED_HOSTS = ['yobetty.pythonanywhere.com', '127.0.0.1', 'localhost']
+
+
 ## JWT Authentication
 Getting Access and Refresh Tokens
 Login Endpoint: POST /api/token/
@@ -228,7 +231,7 @@ Copy code
 Endpoint: GET /api/profiles/
 Description: Lists all profiles.
 Headers: Authorization: Bearer <access_token>
-c. Retrieve or Update a Specific Profile
+# c. Retrieve or Update a Specific Profile
 Endpoint: GET /api/profiles/<profile_id>/
 Description: Retrieve or update a user profile.
 Headers: Authorization: Bearer <access_token>

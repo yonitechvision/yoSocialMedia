@@ -25,7 +25,13 @@ SECRET_KEY = 'django-insecure-)%1gp0cp)x-p&e1*6fht6t^ws@dwgmz(@*b@&+)=mmv#efg7kv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['yobetty.pythonanywhere.com']
+#ALLOWED_HOSTS = ['yobetty.pythonanywhere.com']
+ALLOWED_HOSTS = ['yobetty.pythonanywhere.com', '127.0.0.1', 'localhost']
+
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP traffic to HTTPS
 
 
 # Application definition
