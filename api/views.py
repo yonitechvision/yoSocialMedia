@@ -7,7 +7,6 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.contrib.auth.models import User
 from rest_framework import serializers
-
 from .models import (
     Profile, Post, Follower, Notification, Like, Comment, Message, Repost, Hashtag, PostHashtag
 )
@@ -56,7 +55,13 @@ class ProfileViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Associate the profile with the authenticated user
         serializer.save(user=self.request.user)
-
+    
+    def update(self, request, *args, **kwargs):
+        profile = self.get_object()  # Get the profile instance
+        serializer = self.get_serializer(profile, data=request.data, partial=True)  # Allow partial updates
+        serializer.is_valid(raise_exception=True)  # Validate the data
+        serializer.save()  # Save the updated profile
+        return Response(serializer.data)  # Return the updated profile data
 # Post ViewSet
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('-timestamp')
